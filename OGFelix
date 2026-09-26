@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StudyMate | Smart Learning Platform</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+:root{
+    --primary:#4f46e5;
+    --secondary:#06b6d4;
+    --dark:#111827;
+    --text:#1f2937;
+    --light:#f5f7fb;
+    --white:#ffffff;
+    --success:#16a34a;
+    --danger:#dc2626;
+    --shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+body{
+    background:var(--light);
+    color:var(--text);
+}
+
+/* NAVBAR */
+.navbar{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:white;
+    box-shadow:0 2px 15px rgba(0,0,0,.08);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:15px 6%;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:800;
+    color:var(--primary);
+}
+
+.logo span{
+    color:var(--secondary);
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+    list-style:none;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#374151;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.nav-links a:hover{
+    color:var(--primary);
+}
+
+.nav-buttons{
+    display:flex;
+    gap:10px;
+}
+
+.btn{
+    border:none;
+    padding:11px 18px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+.btn-primary{
+    background:var(--primary);
+    color:white;
+}
+
+.btn-outline{
+    background:white;
+    color:var(--primary);
+    border:1px solid var(--primary);
+}
+
+.menu-btn{
+    display:none;
+    font-size:25px;
+    cursor:pointer;
+}
+
+/* HERO */
+.hero{
+    min-height:620px;
+    display:flex;
+    align-items:center;
+    padding:70px 7%;
+    background:
+    linear-gradient(135deg,#eef2ff,#ecfeff);
+}
+
+.hero-content{
+    max-width:700px;
+}
+
+.badge{
+    display:inline-block;
+    background:#e0e7ff;
+    color:var(--primary);
+    padding:8px 15px;
+    border-radius:30px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:58px;
+    line-height:1.05;
+    margin-bottom:20px;
+    color:var(--dark);
+}
+
+.hero h1 span{
+    color:var(--primary);
+}
+
+.hero p{
+    font-size:19px;
+    line-height:1.7;
+    color:#4b5563;
+    margin-bottom:30px;
+}
+
+.hero-actions{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+/* STATS */
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    padding:35px 7%;
+    background:white;
+}
+
+.stat{
+    text-align:center;
+    padding:20px;
+}
+
+.stat h2{
+    color:var(--primary);
+    font-size:30px;
+}
+
+/* GENERAL */
+.section{
+    padding:70px 7%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.section-title h2{
+    font-size:35px;
+    color:var(--dark);
+    margin-bottom:10px;
+}
+
+.section-title p{
+    color:#6b7280;
+}
+
+/* SUBJECTS */
+.subject-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:22px;
+}
+
+.subject{
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:var(--shadow);
+    cursor:pointer;
+    transition:.3s;
+}
+
+.subject:hover{
+    transform:translateY(-7px);
+}
+
+.subject-icon{
+    width:55px;
+    height:55px;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:27px;
+    margin-bottom:18px;
+    background:#eef2ff;
+}
+
+.subject h3{
+    margin-bottom:10px;
+}
+
+.subject p{
+    color:#6b7280;
+    font-size:14px;
+}
+
+/* FEATURES */
+.features{
+    background:white;
+}
+
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.feature{
+    padding:30px;
+    border-radius:18px;
+    background:var(--light);
+}
+
+.feature-icon{
+    font-size:35px;
+    margin-bottom:15px;
+}
+
+.feature h3{
+    margin-bottom:10px;
+}
+
+/* DASHBOARD */
+.dashboard{
+    background:#111827;
+    color:white;
+}
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.dash-card{
+    background:#1f2937;
+    padding:25px;
+    border-radius:18px;
+}
+
+.progress{
+    background:#374151;
+    height:10px;
+    border-radius:10px;
+    margin:15px 0;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    background:linear-gradient(90deg,var(--primary),var(--secondary));
+    border-radius:10px;
+}
+
+/* NOTES */
+.notes-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.note{
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:var(--shadow);
+}
+
+.note small{
+    color:var(--primary);
+    font-weight:bold;
+}
+
+.note h3{
+    margin:12px 0;
+}
+
+.note button{
+    margin-top:15px;
+}
+
+/* PAST PAPERS */
+.paper-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.paper{
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:var(--shadow);
+}
+
+.paper h3{
+    margin-bottom:10px;
+}
+
+.paper p{
+    color:#6b7280;
+}
+
+/* QUIZ */
+.quiz-box{
+    max-width:800px;
+    margin:auto;
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:var(--shadow);
+}
+
+.question{
+    font-size:21px;
+    font-weight:bold;
+    margin-bottom:25px;
+}
+
+.options{
+    display:grid;
+    gap:12px;
+}
+
+.option{
+    padding:15px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    cursor:pointer;
+    background:white;
+}
+
+.option:hover{
+    background:#eef2ff;
+    border-color:var(--primary);
+}
+
+.option.selected{
+    background:#e0e7ff;
+    border-color:var(--primary);
+}
+
+.quiz-controls{
+    display:flex;
+    justify-content:space-between;
+    margin-top:25px;
+}
+
+/* TIMETABLE */
+.table-container{
+    overflow-x:auto;
+    background:white;
+    border-radius:18px;
+    box-shadow:var(--shadow);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:700px;
+}
+
+th,td{
+    padding:17px;
+    text-align:center;
+    border-bottom:1px solid #eee;
+}
+
+th{
+    background:#eef2ff;
+    color:var(--primary);
+}
+
+/* SEARCH */
+.search-box{
+    max-width:600px;
+    margin:0 auto 35px;
+    display:flex;
+}
+
+.search-box input{
+    width:100%;
+    padding:15px;
+    border:1px solid #ddd;
+    border-radius:12px 0 0 12px;
+    outline:none;
+}
+
+.search-box button{
+    border-radius:0 12px 12px 0;
+}
+
+/* CTA */
+.cta{
+    padding:70px 7%;
+    text-align:center;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:white;
+}
+
+.cta h2{
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.cta p{
+    margin-bottom:25px;
+}
+
+/* FOOTER */
+footer{
+    background:#0b1120;
+    color:#cbd5e1;
+    padding:50px 7%;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:40px;
+}
+
+footer h3{
+    color:white;
+    margin-bottom:15px;
+}
+
+footer ul{
+    list-style:none;
+    line-height:2;
+}
+
+.copyright{
+    text-align:center;
+    border-top:1px solid #374151;
+    padding-top:25px;
+    margin-top:35px;
+}
+
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    z-index:2000;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal-content{
+    background:white;
+    width:100%;
+    max-width:450px;
+    padding:30px;
+    border-radius:20px;
+    position:relative;
+}
+
+.close{
+    position:absolute;
+    right:20px;
+    top:15px;
+    font-size:25px;
+    cursor:pointer;
+}
+
+.modal-content h2{
+    margin-bottom:20px;
+}
+
+.modal-content input{
+    width:100%;
+    padding:14px;
+    margin:8px 0;
+    border:1px solid #ddd;
+    border-radius:10px;
+}
+
+.modal-content button{
+    width:100%;
+    margin-top:12px;
+}
+
+/* TOAST */
+.toast{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    background:#111827;
+    color:white;
+    padding:15px 20px;
+    border-radius:10px;
+    display:none;
+    z-index:3000;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+    .subject-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .feature-grid,
+    .notes-grid,
+    .paper-grid,
+    .dashboard-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .hero h1{
+        font-size:45px;
+    }
+}
+
+@media(max-width:700px){
+    .nav-links{
+        display:none;
+        position:absolute;
+        top:70px;
+        left:0;
+        right:0;
+        background:white;
+        flex-direction:column;
+        padding:20px;
+        box-shadow:var(--shadow);
+    }
+
+    .nav-links.active{
+        display:flex;
+    }
+
+    .nav-buttons{
+        display:none;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .hero{
+        min-height:550px;
+        padding:50px 6%;
+    }
+
+    .hero h1{
+        font-size:39px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    .subject-grid,
+    .feature-grid,
+    .notes-grid,
+    .paper-grid,
+    .dashboard-grid{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+        padding:25px 4%;
+    }
+
+    .section{
+        padding:55px 5%;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav class="navbar">
+    <div class="logo">Study<span>Mate</span> 📚</div>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a onclick="scrollToSection('home')">Home</a></li>
+        <li><a onclick="scrollToSection('subjects')">Subjects</a></li>
+        <li><a onclick="scrollToSection('notes')">Notes</a></li>
+        <li><a onclick="scrollToSection('papers')">Past Papers</a></li>
+        <li><a onclick="scrollToSection('quiz')">Quizzes</a></li>
+        <li><a onclick="scrollToSection('timetable')">Timetable</a></li>
+    </ul>
+
+    <div class="nav-buttons">
+        <button class="btn btn-outline" onclick="openModal('loginModal')">Login</button>
+        <button class="btn btn-primary" onclick="openModal('signupModal')">Sign Up</button>
+    </div>
+
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <span class="badge">🚀 Learn Smarter. Achieve More.</span>
+
+        <h1>
+            Your Personal
+            <span>StudyMate</span>
+        </h1>
+
+        <p>
+            StudyMate is your smart learning companion for notes,
+            past papers, quizzes, revision and academic planning —
+            all in one place.
+        </p>
+
+        <div class="hero-actions">
+            <button class="btn btn-primary" onclick="scrollToSection('subjects')">
+                Start Learning →
+            </button>
+
+            <button class="btn btn-outline" onclick="scrollToSection('quiz')">
+                Take a Quiz 🧠
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+    <div class="stat">
+        <h2>10+</h2>
+        <p>Subjects</p>
+    </div>
+
+    <div class="stat">
+        <h2>100+</h2>
+        <p>Study Resources</p>
+    </div>
+
+    <div class="stat">
+        <h2>50+</h2>
+        <p>Quiz Questions</p>
+    </div>
+
+    <div class="stat">
+        <h2>24/7</h2>
+        <p>Study Access</p>
+    </div>
+</section>
+
+<!-- SUBJECTS -->
+<section class="section" id="subjects">
+    <div class="section-title">
+        <h2>Explore Your Subjects</h2>
+        <p>Choose a subject and start learning.</p>
+    </div>
+
+    <div class="subject-grid" id="subjectGrid">
+
+        <div class="subject" data-name="biology" onclick="showMessage('Biology resources coming soon!')">
+            <div class="subject-icon">🧬</div>
+            <h3>Biology</h3>
+            <p>Cells, genetics, ecology, human biology and more.</p>
+        </div>
+
+        <div class="subject" data-name="chemistry" onclick="showMessage('Chemistry resources coming soon!')">
+            <div class="subject-icon">⚗️</div>
+            <h3>Chemistry</h3>
+            <p>Organic, inorganic, physical chemistry and practicals.</p>
+        </div>
+
+        <div class="subject" data-name="mathematics" onclick="showMessage('Mathematics resources coming soon!')">
+            <div class="subject-icon">📐</div>
+            <h3>Mathematics</h3>
+            <p>Algebra, calculus, geometry, statistics and more.</p>
+        </div>
+
+        <div class="subject" data-name="physics" onclick="showMessage('Physics resources coming soon!')">
+            <div class="subject-icon">⚡</div>
+            <h3>Physics</h3>
+            <p>Mechanics, electricity, waves, energy and measurements.</p>
+        </div>
+
+        <div class="subject" data-name="english" onclick="showMessage('English resources coming soon!')">
+            <div class="subject-icon">📖</div>
+            <h3>English</h3>
+            <p>Grammar, comprehension, writing and literature.</p>
+        </div>
+
+        <div class="subject" data-name="geography" onclick="showMessage('Geography resources coming soon!')">
+            <div class="subject-icon">🌍</div>
+            <h3>Geography</h3>
+            <p>Physical, human and economic geography.</p>
+        </div>
+
+        <div class="subject" data-name="ict" onclick="showMessage('ICT resources coming soon!')">
+            <div class="subject-icon">💻</div>
+            <h3>ICT</h3>
+            <p>Computing, programming, databases and digital skills.</p>
+        </div>
+
+        <div class="subject" data-name="history" onclick="showMessage('History resources coming soon!')">
+            <div class="subject-icon">🏛️</div>
+            <h3>History</h3>
+            <p>Important events, people, societies and civilizations.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section features">
+    <div class="section-title">
+        <h2>Everything You Need to Study</h2>
+        <p>A complete academic toolkit.</p>
+    </div>
+
+    <div class="feature-grid">
+
+        <div class="feature">
+            <div class="feature-icon">📚</div>
+            <h3>Smart Notes</h3>
+            <p>Organize important notes and quickly review difficult topics.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">📄</div>
+            <h3>Past Papers</h3>
+            <p>Practice examination-style questions and improve your preparation.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">🧠</div>
+            <h3>Interactive Quizzes</h3>
+            <p>Test yourself and immediately see your score.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">📅</div>
+            <h3>Study Timetable</h3>
+            <p>Plan your revision and keep your study sessions organized.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">📊</div>
+            <h3>Progress Tracking</h3>
+            <p>Monitor your learning progress and quiz performance.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">🔎</div>
+            <h3>Quick Search</h3>
+            <p>Find subjects and resources quickly from the homepage.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- DASHBOARD -->
+<section class="section dashboard" id="dashboard">
+    <div class="section-title">
+        <h2 style="color:white">Student Dashboard</h2>
+        <p style="color:#cbd5e1">Your learning progress at a glance.</p>
+    </div>
+
+    <div class="dashboard-grid">
+
+        <div class="dash-card">
+            <h3>📚 Biology</h3>
+            <p>Progress: 72%</p>
+            <div class="progress">
+                <div class="progress-bar" style="width:72%"></div>
+            </div>
+            <button class="btn btn-primary" onclick="showMessage('Opening Biology...')">
+                Continue
+            </button>
+        </div>
+
+        <div class="dash-card">
+            <h3>⚗️ Chemistry</h3>
+            <p>Progress: 84%</p>
+            <div class="progress">
+                <div class="progress-bar" style="width:84%"></div>
+            </div>
+            <button class="btn btn-primary" onclick="showMessage('Opening Chemistry...')">
+                Continue
+            </button>
+        </div>
+
+        <div class="dash-card">
+            <h3>📐 Mathematics</h3>
+            <p>Progress: 65%</p>
+            <div class="progress">
+                <div class="progress-bar" style="width:65%"></div>
+            </div>
+            <button class="btn btn-primary" onclick="showMessage('Opening Mathematics...')">
+                Continue
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<!-- SEARCH -->
+<section class="section">
+    <div class="section-title">
+        <h2>Find a Subject</h2>
+        <p>Search StudyMate resources.</p>
+    </div>
+
+    <div class="search-box">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search Biology, Chemistry, Mathematics..."
+            onkeyup="searchSubjects()"
+        >
+        <button class="btn btn-primary">🔎</button>
+    </div>
+</section>
+
+<!-- NOTES -->
+<section class="section" id="notes">
+    <div class="section-title">
+        <h2>Featured Notes</h2>
+        <p>Start with these revision materials.</p>
+    </div>
+
+    <div class="notes-grid">
+
+        <div class="note">
+            <small>BIOLOGY</small>
+            <h3>Transport in Humans</h3>
+            <p>Review the circulatory system, blood, heart and transport mechanisms.</p>
+            <button class="btn btn-primary" onclick="openNote('Transport in Humans')">
+                Read Notes
+            </button>
+        </div>
+
+        <div class="note">
+            <small>CHEMISTRY</small>
+            <h3>Atomic Structure</h3>
+            <p>Revise atoms, isotopes, electronic configuration and related concepts.</p>
+            <button class="btn btn-primary" onclick="openNote('Atomic Structure')">
+                Read Notes
+            </button>
+        </div>
+
+        <div class="note">
+            <small>MATHEMATICS</small>
+            <h3>Functions</h3>
+            <p>Understand functions, notation, domain, range and graphs.</p>
+            <button class="btn btn-primary" onclick="openNote('Functions')">
+                Read Notes
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<!-- PAST PAPERS -->
+<section class="section features" id="papers">
+    <div class="section-title">
+        <h2>Past Papers</h2>
+        <p>Practice like it is the real examination.</p>
+    </div>
+
+    <div class="paper-grid">
+
+        <div class="paper">
+            <h3>🧬 Biology Paper</h3>
+            <p>Senior 5 Biology revision questions.</p>
+            <button class="btn btn-primary" onclick="showMessage('Biology paper selected.')">
+                Practice
+            </button>
+        </div>
+
+        <div class="paper">
+            <h3>⚗️ Chemistry Paper</h3>
+            <p>Senior 5 Chemistry revision questions.</p>
+            <button class="btn btn-primary" onclick="showMessage('Chemistry paper selected.')">
+                Practice
+            </button>
+        </div>
+
+        <div class="paper">
+            <h3>📐 Mathematics Paper</h3>
+            <p>Senior 5 Mathematics revision questions.</p>
+            <button class="btn btn-primary" onclick="showMessage('Mathematics paper selected.')">
+                Practice
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<!-- QUIZ -->
+<section class="section" id="quiz">
+
+    <div class="section-title">
+        <h2>🧠 Quick Quiz</h2>
+        <p>Test your knowledge.</p>
+    </div>
+
+    <div class="quiz-box">
+
+        <div id="quizContent">
+            <div class="question" id="question">
+                Loading question...
+            </div>
+
+            <div class="options" id="options"></div>
+
+            <div class="quiz-controls">
+                <span id="questionNumber"></span>
+                <button class="btn btn-primary" onclick="nextQuestion()">
+                    Next →
+                </button>
+            </div>
+        </div>
+
+        <div id="quizResult" style="display:none;text-align:center;">
+            <h2>🎉 Quiz Complete!</h2>
+            <p id="scoreText" style="font-size:20px;margin:20px;"></p>
+            <button class="btn btn-primary" onclick="restartQuiz()">
+                Try Again
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<!-- TIMETABLE -->
+<section class="section" id="timetable">
+    <div class="section-title">
+        <h2>📅 Study Timetable</h2>
+        <p>Plan your week and stay consistent.</p>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>Day</th>
+                <th>Morning</th>
+                <th>Afternoon</th>
+                <th>Evening</th>
+            </tr>
+
+            <tr>
+                <td>Monday</td>
+                <td>Mathematics</td>
+                <td>Biology</td>
+                <td>Chemistry</td>
+            </tr>
+
+            <tr>
+                <td>Tuesday</td>
+                <td>Physics</td>
+                <td>Mathematics</td>
+                <td>Biology</td>
+            </tr>
+
+            <tr>
+                <td>Wednesday</td>
+                <td>Chemistry</td>
+                <td>English</td>
+                <td>Mathematics</td>
+            </tr>
+
+            <tr>
+                <td>Thursday</td>
+                <td>Biology</td>
+                <td>Physics</td>
+                <td>Chemistry</td>
+            </tr>
+
+            <tr>
+                <td>Friday</td>
+                <td>Mathematics</td>
+                <td>Biology</td>
+                <td>Past Papers</td>
+            </tr>
+
+            <tr>
+                <td>Saturday</td>
+                <td>Revision</td>
+                <td>Quizzes</td>
+                <td>Weak Topics</td>
+            </tr>
+        </table>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <h2>Don't Just Study. Study Smart.</h2>
+    <p>Build better habits, practice consistently and move closer to your goals.</p>
+    <button class="btn" style="background:white;color:#4f46e5"
+            onclick="openModal('signupModal')">
+        Join StudyMate 🚀
+    </button>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-grid">
+
+        <div>
+            <h3>StudyMate 📚</h3>
+            <p>
+                A smart learning platform designed to help students
+                organize their studies, practice questions and improve
+                academic performance.
+            </p>
+        </div>
+
+        <div>
+            <h3>Resources</h3>
+            <ul>
+                <li>Notes</li>
+                <li>Past Papers</li>
+                <li>Quizzes</li>
+                <li>Timetable</li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Subjects</h3>
+            <ul>
+                <li>Biology</li>
+                <li>Chemistry</li>
+                <li>Mathematics</li>
+                <li>Physics</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="copyright">
+        © 2026 StudyMate. Learn • Practice • Achieve.
+    </div>
+</footer>
+
+<!-- LOGIN MODAL -->
+<div class="modal" id="loginModal">
+    <div class="modal-content">
+
+        <span class="close" onclick="closeModal('loginModal')">×</span>
+
+        <h2>Welcome Back 👋</h2>
+
+        <input type="email" id="loginEmail" placeholder="Email address">
+        <input type="password" id="loginPassword" placeholder="Password">
+
+        <button class="btn btn-primary" onclick="login()">
+            Login
+        </button>
+
+        <p style="margin-top:15px;text-align:center;">
+            Don't have an account?
+            <a href="#" onclick="switchModal('loginModal','signupModal')">
+                Sign up
+            </a>
+        </p>
+
+    </div>
+</div>
+
+<!-- SIGNUP MODAL -->
+<div class="modal" id="signupModal">
+    <div class="modal-content">
+
+        <span class="close" onclick="closeModal('signupModal')">×</span>
+
+        <h2>Create Your Account 🚀</h2>
+
+        <input type="text" id="signupName" placeholder="Your name">
+        <input type="email" id="signupEmail" placeholder="Email address">
+        <input type="password" id="signupPassword" placeholder="Create password">
+
+        <button class="btn btn-primary" onclick="signup()">
+            Create Account
+        </button>
+
+        <p style="margin-top:15px;text-align:center;">
+            Already have an account?
+            <a href="#" onclick="switchModal('signupModal','loginModal')">
+                Login
+            </a>
+        </p>
+
+    </div>
+</div>
+
+<!-- NOTE MODAL -->
+<div class="modal" id="noteModal">
+    <div class="modal-content">
+
+        <span class="close" onclick="closeModal('noteModal')">×</span>
+
+        <h2 id="noteTitle"></h2>
+
+        <p id="noteText" style="line-height:1.7;color:#4b5563;"></p>
+
+        <button class="btn btn-primary" onclick="closeModal('noteModal')">
+            Close
+        </button>
+
+    </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+
+/* NAVIGATION */
+
+function toggleMenu(){
+    document.getElementById("navLinks").classList.toggle("active");
+}
+
+function scrollToSection(id){
+    document.getElementById(id).scrollIntoView({
+        behavior:"smooth"
+    });
+
+    document.getElementById("navLinks").classList.remove("active");
+}
+
+
+/* MODALS */
+
+function openModal(id){
+    document.getElementById(id).style.display="flex";
+}
+
+function closeModal(id){
+    document.getElementById(id).style.display="none";
+}
+
+function switchModal(current,next){
+    closeModal(current);
+    openModal(next);
+}
+
+
+/* LOGIN */
+
+function login(){
+
+    const email=document.getElementById("loginEmail").value;
+    const password=document.getElementById("loginPassword").value;
+
+    if(!email || !password){
+        showMessage("Please enter your email and password.");
+        return;
+    }
+
+    localStorage.setItem("studyMateUser",email);
+
+    closeModal("loginModal");
+
+    showMessage("Login successful! Welcome back 🎉");
+}
+
+
+/* SIGN UP */
+
+function signup(){
+
+    const name=document.getElementById("signupName").value;
+    const email=document.getElementById("signupEmail").value;
+    const password=document.getElementById("signupPassword").value;
+
+    if(!name || !email || !password){
+        showMessage("Please fill in all fields.");
+        return;
+    }
+
+    localStorage.setItem("studyMateName",name);
+    localStorage.setItem("studyMateUser",email);
+
+    closeModal("signupModal");
+
+    showMessage("Account created successfully! 🎉");
+}
+
+
+/* SEARCH */
+
+function searchSubjects(){
+
+    const query=document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    const subjects=document.querySelectorAll(".subject");
+
+    subjects.forEach(subject=>{
+
+        const name=subject.dataset.name;
+
+        if(name.includes(query)){
+            subject.style.display="block";
+        }else{
+            subject.style.display="none";
+        }
+
+    });
+}
+
+
+/* NOTES */
+
+function openNote(title){
+
+    document.getElementById("noteTitle").innerText=title;
+
+    const notes={
+        "Transport in Humans":
+        "Review the circulatory system, components of blood, the structure of the heart, blood vessels and how materials are transported around the human body.",
+
+        "Atomic Structure":
+        "An atom consists of a nucleus containing protons and neutrons surrounded by electrons. Isotopes are atoms of the same element with the same number of protons but different numbers of neutrons.",
+
+        "Functions":
+        "A function is a relationship in which each input has exactly one output. Important ideas include domain, range, notation, graphs and inverse functions."
+    };
+
+    document.getElementById("noteText").innerText=
+        notes[title] || "Study material will be added here.";
+
+    openModal("noteModal");
+}
+
+
+/* QUIZ */
+
+const quizQuestions=[
+
+    {
+        question:"Which organ pumps blood around the human body?",
+        options:["Liver","Heart","Kidney","Lung"],
+        answer:1
+    },
+
+    {
+        question:"What is the chemical symbol for oxygen?",
+        options:["O","Ox","C","H"],
+        answer:0
+    },
+
+    {
+        question:"What is 12 × 5?",
+        options:["50","60","70","55"],
+        answer:1
+    },
+
+    {
+        question:"Which force pulls objects toward Earth?",
+        options:["Friction","Magnetism","Gravity","Tension"],
+        answer:2
+    },
+
+    {
+        question:"Which organelle is mainly responsible for photosynthesis?",
+        options:["Nucleus","Mitochondrion","Chloroplast","Ribosome"],
+        answer:2
+    }
+
+];
+
+let currentQuestion=0;
+let score=0;
+let selectedAnswer=null;
+
+function loadQuestion(){
+
+    selectedAnswer=null;
+
+    const q=quizQuestions[currentQuestion];
+
+    document.getElementById("question").innerText=q.question;
+
+    document.getElementById("questionNumber").innerText=
+        `Question ${currentQuestion+1} of ${quizQuestions.length}`;
+
+    const options=document.getElementById("options");
+
+    options.innerHTML="";
+
+    q.options.forEach((option,index)=>{
+
+        const div=document.createElement("div");
+
+        div.className="option";
+
+        div.innerText=option;
+
+        div.onclick=function(){
+
+            document
+                .querySelectorAll(".option")
+                .forEach(x=>x.classList.remove("selected"));
+
+            div.classList.add("selected");
+
+            selectedAnswer=index;
+        };
+
+        options.appendChild(div);
+
+    });
+}
+
+function nextQuestion(){
+
+    if(selectedAnswer===null){
+        showMessage("Please select an answer first.");
+        return;
+    }
+
+    if(selectedAnswer===quizQuestions[currentQuestion].answer){
+        score++;
+    }
+
+    currentQuestion++;
+
+    if(currentQuestion<quizQuestions.length){
+        loadQuestion();
+    }else{
+        finishQuiz();
+    }
+}
+
+function finishQuiz(){
+
+    document.getElementById("quizContent").style.display="none";
+
+    document.getElementById("quizResult").style.display="block";
+
+    document.getElementById("scoreText").innerText=
+        `You scored ${score} out of ${quizQuestions.length}.`;
+
+    localStorage.setItem("lastQuizScore",score);
+}
+
+function restartQuiz(){
+
+    currentQuestion=0;
+    score=0;
+
+    document.getElementById("quizContent").style.display="block";
+
+    document.getElementById("quizResult").style.display="none";
+
+    loadQuestion();
+}
+
+
+/* TOAST */
+
+function showMessage(message){
+
+    const toast=document.getElementById("toast");
+
+    toast.innerText=message;
+
+    toast.style.display="block";
+
+    setTimeout(()=>{
+        toast.style.display="none";
+    },3000);
+}
+
+
+/* CLOSE MODAL WHEN CLICKING OUTSIDE */
+
+window.onclick=function(event){
+
+    if(event.target.classList.contains("modal")){
+        event.target.style.display="none";
+    }
+
+};
+
+
+/* START QUIZ */
+
+loadQuestion();
+
+
+/* LOAD SAVED USER */
+
+window.addEventListener("load",()=>{
+
+    const name=localStorage.getItem("studyMateName");
+
+    if(name){
+        console.log("Welcome back "+name);
+    }
+
+});
+
+</script>
+
+</body>
+</html>
